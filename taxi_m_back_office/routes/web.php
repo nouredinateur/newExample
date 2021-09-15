@@ -27,9 +27,10 @@ Route::get('/register', function() {
 
 Route::post('login', [AuthController::class, 'authenticate'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
-
+Route::get('logout', [AuthController::class, 'logout']);
+Route::get('get_user', [AuthController::class, 'get_user']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('logout', [AuthController::class, 'logout']);
-    Route::get('get_user', [AuthController::class, 'get_user']);
+    // Route::get('logout', [AuthController::class, 'logout']);
+    // Route::get('get_user', [AuthController::class, 'get_user']);
 });

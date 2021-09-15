@@ -56,7 +56,7 @@
                                 @enderror
                         <div class="form-group mb-5">
                             <input class="form-control h-auto form-control-solid py-4 px-8" type="password"
-                                   placeholder="Confirm Password" name="password_confirmation "/>
+                                   placeholder="Confirm Password" name="password_confirmation"/>
                         </div>
         
                         <div class="form-group mb-5 text-left">

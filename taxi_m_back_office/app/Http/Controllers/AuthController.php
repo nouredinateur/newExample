@@ -14,6 +14,9 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+
+        $this->middleware(['guest']);
+
         $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
@@ -66,40 +69,44 @@ class AuthController extends Controller
                 ], 500);
         }
  	
- 		// //Token created, return with success response and jwt token
-        // return response()->json([
-        //     'success' => true,
-        //     'token' => $token,
-        // ]);
-        dd($token);
+ 		//Token created, return with success response and jwt token
+        return response()->json([
+            'success' => true,
+            'token' => $token,
+        ]);
+        // dd($token);
     }
  
     public function logout(Request $request)
     {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+
         //valid credential
-        $validator = Validator::make($request->only('token'), [
-            'token' => 'required'
-        ]);
+        // $validator = Validator::make($request->only('token'), [
+        //     'token' => 'required'
+        // ]);
 
         //Send failed response if request is not valid
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
-        }
+        // if ($validator->fails()) {
+        //     return response()->json(['error' => $validator->messages()], 200);
+        // }
 
 		//Request is validated, do logout        
-        try {
-            JWTAuth::invalidate($request->token);
+        // try {
+        //     JWTAuth::invalidate($request->token);
  
-            return response()->json([
-                'success' => true,
-                'message' => 'User has been logged out'
-            ]);
-        } catch (JWTException $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Sorry, user cannot be logged out'
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        //     return response()->json([
+        //         'success' => true,
+        //         'message' => 'User has been logged out'
+        //     ]);
+        // } catch (JWTException $exception) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Sorry, user cannot be logged out'
+        //     ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        // }
     }
  
     public function get_user(Request $request)
