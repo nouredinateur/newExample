@@ -21,16 +21,17 @@ Route::get('/', function () {
 Route::get('/login', function() {
     return view('auth.login');
 });
+
 Route::get('/register', function() {
     return view('auth.register');
 });
 
-Route::post('login', [AuthController::class, 'authenticate'])->name('login');
-Route::post('register', [AuthController::class, 'register'])->name('register');
-Route::get('logout', [AuthController::class, 'logout']);
-Route::get('get_user', [AuthController::class, 'get_user']);
+// Route::post('login', [AuthController::class, 'authenticate'])->name('login');
+// Route::post('register', [AuthController::class, 'register'])->name('register');
+// Route::get('logout', [AuthController::class, 'logout']);
+// Route::get('get_user', [AuthController::class, 'get_user']);
 
-Route::group(['middleware' => ['jwt.verify']], function() {
-    // Route::get('logout', [AuthController::class, 'logout']);
-    // Route::get('get_user', [AuthController::class, 'get_user']);
-});
+// Route::group(['middleware' => ['jwt.verify']], function() {
+//     // Route::get('logout', [AuthController::class, 'logout']);
+//     // Route::get('get_user', [AuthController::class, 'get_user']);
+// });

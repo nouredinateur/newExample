@@ -9,9 +9,16 @@
         height: auto;
     }
 </style>
+<div style="width:100%; padding-left:15%; padding-top:5%;" >
+    <form action="api/auth/logout" method="post">
+        @csrf
+        <button class="btn btn-primary font-weight-bolder" type="submit">Logout</button>
+    </form>
+</div>
+
 <div class="dashboard">
 
-
+   
 
     <!--begin::Card-->
     <div class="card card-custom">

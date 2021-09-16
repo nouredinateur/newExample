@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-
+// Route::post('login', [AuthController::class, 'authenticate'])->name('login');
+// Route::post('register', [AuthController::class, 'register'])->name('register');
 
 // Route::group(['middleware' => ['jwt.verify']], function() {
 //     Route::get('logout', [AuthController::class, 'logout']);
@@ -31,3 +32,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     // Route::put('update/{product}',  [ProductController::class, 'update']);
 //     // Route::delete('delete/{product}',  [ProductController::class, 'destroy']);
 // });
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function () {
+
+    Route::post('register',  [AuthController::class, 'register'])->name('register');
+    Route::post('login',  [AuthController::class, 'login'])->name('login');
+    Route::post('logout',  [AuthController::class, 'logout']);
+    Route::post('refresh',  [AuthController::class, 'refresh']);
+    Route::post('me',  [AuthController::class, 'me']);
+    Route::post('payload',  [AuthController::class, 'payload']);
+
+});

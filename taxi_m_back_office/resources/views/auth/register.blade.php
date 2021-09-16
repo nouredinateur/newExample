@@ -25,7 +25,7 @@
                         <h3>Sign up</h3>
                         <div class="text-muted font-weight-bold">Enter your details to register:</div>
                     </div>
-                    <form action="{{ route('register')}}"  method="post" class="form" id="kt_login_signup_form">
+                    <form action="/api/auth/register"  method="post" class="form" id="kt_login_signup_form">
                         @csrf
                         <div class="form-group mb-5">
                             <input class="form-control h-auto form-control-solid py-4 px-8" value="{{ old('name') }}" type="text"
